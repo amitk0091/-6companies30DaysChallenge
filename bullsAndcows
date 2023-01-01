@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+      vector<int> count1(10,0);  
+      vector<int> count2(10,0); 
+      int same=0; 
+      for(int i =0; i<guess.length();i++){
+          int a=stoi(secret.substr(i,1));
+          int b=stoi(guess.substr(i,1));
+         if(a==b){
+            same++;
+         }
+         else{
+             count1[a]++;
+             count2[b]++;
+         }
+      }
+      int same2=0;
+      for(int i=0;i<10;i++){
+          same2+=min(count1[i],count2[i]);
+      }
+      string st;
+      st+=to_string(same);
+      st+="A";
+      st+=to_string(same2);
+      st+="B";
+      return st;
+    }
+};
